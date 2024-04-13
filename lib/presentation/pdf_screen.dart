@@ -33,9 +33,9 @@ class PdfScreen extends StatelessWidget {
     String pdfPath = "";
     var connectivityResult = await (Connectivity().checkConnectivity());
     final File pathOfPdf = await readFile(pdfName);
-    print("pathOfPdf.path->${File(pathOfPdf.path).length==0}");
+    print("pathOfPdf.path22222->${await File(pathOfPdf.path).existsSync()}");
     if (connectivityResult == ConnectivityResult.mobile) {
-      if(File(pathOfPdf.path).length!=0){
+      if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
@@ -48,7 +48,7 @@ class PdfScreen extends StatelessWidget {
         );
       }
     } else if (connectivityResult == ConnectivityResult.wifi) {
-      if(File(pathOfPdf.path).length!=0){
+      if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
@@ -61,8 +61,7 @@ class PdfScreen extends StatelessWidget {
         );
       }
     } else {
-      print("pathOfPdf.path->${File(pathOfPdf.path).length==0}");
-      if(File(pathOfPdf.path).length!=0){
+    if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
