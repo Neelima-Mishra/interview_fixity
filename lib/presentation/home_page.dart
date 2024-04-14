@@ -29,11 +29,11 @@ class HomePage extends StatelessWidget {
           ),
           title: const Text('Tabs Demo'),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            TabBarScreen(),
-            TabBarScreen(),
-            TabBarScreen(),
+            TabBarScreen(pdfUrls: pdfUrls,),
+            TabBarScreen(pdfUrls: pdfUrlsSecond,),
+            TabBarScreen(pdfUrls: pdfUrlsThree,),
           ],
         ),
       )

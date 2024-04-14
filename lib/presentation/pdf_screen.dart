@@ -21,7 +21,8 @@ class PdfScreen extends StatelessWidget {
           return ListTile(
             title: Text('PDF ${index + 1}'),
             onTap: () {
-              _openPDF(context, pdfUrls[index],"index${index+1}");
+              print(pdfUrls[index].substring(10));
+              _openPDF(context, pdfUrls[index],"index${index+1}${(pdfUrls[index].substring(10)).replaceAll("/", "")}");
             },
           );
         },
@@ -38,33 +39,33 @@ class PdfScreen extends StatelessWidget {
       if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
+          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path, url: url, pdfName: pdfName,)),
         );
       }else{
-        pdfPath = await downloadPDF(url,pdfName);
+        pdfPath = await downloadPDF(url,pdfName,context);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pdfPath)),
+          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path, url: url, pdfName: pdfName,)),
         );
       }
     } else if (connectivityResult == ConnectivityResult.wifi) {
       if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
+          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path, url: url, pdfName: pdfName,)),
         );
       }else{
-        pdfPath = await downloadPDF(url,pdfName);
+        pdfPath = await downloadPDF(url,pdfName,context);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pdfPath)),
+          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path, url: url, pdfName: pdfName,)),
         );
       }
     } else {
     if(File(pathOfPdf.path).existsSync()){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path)),
+          MaterialPageRoute(builder: (context) => PDFViewer(pdfPath:pathOfPdf.path, url: url, pdfName: pdfName,)),
         );
       }else{
         ScaffoldMessenger.of(context).showSnackBar((const SnackBar(content: Text("please Check Internet"))));

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:interview_fixity/presentation/pdf_screen.dart';
 
-import '../app/functions.dart';
-
 class TabBarScreen extends StatelessWidget {
-  const TabBarScreen({Key? key}) : super(key: key);
+  final List<String> pdfUrls;
+  const TabBarScreen({Key? key, required this.pdfUrls}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
